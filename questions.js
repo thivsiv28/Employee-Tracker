@@ -13,24 +13,24 @@ const mainQuestions = [
                 value: 'view_all_employees',
             },
             {
-                name: 'Add Employee',
-                value: 'add_employee',
-            },
-            {
-                name: 'Update Employee Role',
-                value: 'update_employee_role',
-            },
-            {
                 name: 'View All Roles',
                 value: 'view_all_roles',
+            },
+            {
+                name: 'Add Department',
+                value: 'add_department',
             },
             {
                 name: 'Add Role',
                 value: 'add_role',
             },
             {
-                name: 'Add Department',
-                value: 'add_department',
+                name: 'Add Employee',
+                value: 'add_employee',
+            },
+            {
+                name: 'Update Employee Role',
+                value: 'update_employee_role',
             },
             {
                 name: 'Quit',
@@ -52,7 +52,7 @@ const addRoleQuestions = [
     },
     {
         type: 'list',
-        name: 'department',
+        name: 'departmentId',
         message: 'What department does this role belong to?',
         choices: []
     }
