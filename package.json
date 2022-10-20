@@ -1,0 +1,26 @@
+{
+  "name": "module-12-employee-tracker",
+  "version": "1.0.0",
+  "description": "Employee Tracker -SQL",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thivsiv28/Module-12-Employee-Tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thivsiv28/Module-12-Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/thivsiv28/Module-12-Employee-Tracker#readme",
+  "dependencies": {
+    "inquirer": "^9.1.4",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.20"
+  }
+}
