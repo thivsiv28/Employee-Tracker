@@ -5,9 +5,15 @@ const { printTable } = require('console-table-printer');
 
 const init = async () => {
     await db.connect();
-    const mainAnswers = await inquirer.prompt(questions.mainQuestions);
-    console.log(mainAnswers);
-    await handleMainAnswers(mainAnswers);
+
+    let mainAnswers = await inquirer.prompt(questions.mainQuestions);
+
+    while (mainAnswers.action != 'quit') {
+        await handleMainAnswers(mainAnswers);
+        mainAnswers = await inquirer.prompt(questions.mainQuestions);
+    }
+
+    await db.end();
 };
 
 const handleMainAnswers = async (mainAnswers) => {
@@ -24,6 +30,10 @@ const handleMainAnswers = async (mainAnswers) => {
         await addDepartment();
     } else if (mainAnswers.action == 'add_role') {
         await addRole();
+    } else if (mainAnswers.action == 'add_employee') {
+        await addEmployee();
+    } else {
+        await updateEmployeeRole();
     }
 };
 
@@ -47,8 +57,58 @@ const addRole = async () => {
     console.log(roleAnswers);
 };
 
+const addEmployee = async () => {
+    const employeeQuestions = questions.addEmployeeQuestions;
+    const employees = await db.getAllEmployees();
+    const roles = await db.getAllRoles();
+
+    employeeQuestions[2].choices = roles.map(role => {
+        return {
+            name: role.name,
+            value: role.id
+        };
+    });
+
+    employeeQuestions[3].choices = employeeQuestions[3].choices.concat(employees.map(emp => {
+        return {
+            name: `${emp.firstname} ${emp.lastname}`,
+            value: emp.id
+        };
+    }));
+
+    const employeeAnswers = await inquirer.prompt(employeeQuestions);
+    console.log(employeeAnswers);
+    await db.addEmployee(employeeAnswers);
+};
+
+const updateEmployeeRole = async () => {
+    const updateQuestions = questions.updateEmployeeRole;
+    const employees = await db.getAllEmployees();
+    const roles = await db.getAllRoles();
+
+
+    updateQuestions[0].choices = employees.map(emp => {
+        return {
+            name: `${emp.firstname} ${emp.lastname}`,
+            value: emp.id
+        };
+    });
+
+    updateQuestions[1].choices = roles.map(role => {
+        return {
+            name: role.name,
+            value: role.id
+        };
+    });
+    const answers = await inquirer.prompt(updateQuestions);
+    await db.updateEmployeeRole(answers);
+    console.log(answers);
+};
+
+
 init().then(() => {
-    console.log('Application remove');
+    console.log('Application finished');
+    return;
 }).catch((err) => {
     console.error('Error starting application', err);
-});
+}).finally(() => { });

@@ -55,13 +55,13 @@ const addRoleQuestions = [
         name: 'departmentId',
         message: 'What department does this role belong to?',
         choices: []
-    }
+    },
 ];
 
 const addEmployeeQuestions = [
     {
         type: 'input',
-        name: 'firstanme',
+        name: 'firstname',
         message: 'What is the employee\'s first name',
     },
     {
@@ -71,18 +71,18 @@ const addEmployeeQuestions = [
     },
     {
         type: 'list',
-        name: 'role',
+        name: 'roleId',
         message: 'What is the employee\'s role?',
         choices: []
     },
     {
         type: 'list',
-        name: 'manager',
+        name: 'managerId',
         message: 'What is the employee\'s manager?',
         choices: [
             {
                 name: 'None',
-                value: 'none',
+                value: null,
             }]
     },
 ];
@@ -95,9 +95,25 @@ const addDepartmentQuestions = [
     }
 ];
 
+const updateEmployeeRole = [
+    {
+        type: 'list',
+        name: 'id',
+        message: 'Which employee would you like to update role for?',
+        choices: []
+    },
+    {
+        type: 'list',
+        name: 'roleId',
+        message: 'What is the employee\'s new role?',
+        choices: []
+    }
+];
+
 module.exports = {
     mainQuestions,
     addRoleQuestions,
     addEmployeeQuestions,
-    addDepartmentQuestions
+    addDepartmentQuestions,
+    updateEmployeeRole,
 };

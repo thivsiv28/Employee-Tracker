@@ -11,6 +11,10 @@ const connect = async () => {
     console.info('Database successfully connected');
 };
 
+const end = async () => {
+    await connection.end();
+};
+
 const addDepartment = async ({ name }) => {
     await connection.execute('INSERT INTO department (name) VALUES (?)',
         [name]);
@@ -21,8 +25,9 @@ const addRole = async ({ name, departmentId, salary }) => {
         [name, departmentId, salary]);
 };
 
-const addEmployee = async ({ firstname, lastname, manager, role }) => {
-
+const addEmployee = async ({ firstname, lastname, managerId, roleId }) => {
+    await connection.execute("INSERT INTO employee (firstname, lastname, manager_id, role_id) VALUES (?, ?, ?, ?)",
+        [firstname, lastname, managerId, roleId]);
 };
 
 const getAllEmployees = async () => {
@@ -38,6 +43,11 @@ const getAllDepartments = async () => {
 const getAllRoles = async () => {
     const [rows, _] = await connection.execute("SELECT * FROM role");
     return rows;
+};
+
+const updateEmployeeRole = async ({ roleId, id }) => {
+    await connection.execute("UPDATE employee SET role_id = ? WHERE id = ?",
+        [roleId, id]);
 };
 
 const getDetailedEmployees = async () => {
@@ -63,6 +73,7 @@ const getDetailedRoles = async () => {
 
 module.exports = {
     connect,
+    end,
     getAllDepartments,
     getAllEmployees,
     getDetailedEmployees,
@@ -70,4 +81,6 @@ module.exports = {
     getDetailedRoles,
     addDepartment,
     addRole,
+    addEmployee,
+    updateEmployeeRole,
 };
