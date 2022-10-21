@@ -54,7 +54,7 @@ const addRole = async () => {
     });
     const roleAnswers = await inquirer.prompt(roleQuestions);
     await db.addRole(roleAnswers);
-    console.log(roleAnswers);
+    // console.log(roleAnswers);
 };
 
 const addEmployee = async () => {
@@ -77,7 +77,7 @@ const addEmployee = async () => {
     }));
 
     const employeeAnswers = await inquirer.prompt(employeeQuestions);
-    console.log(employeeAnswers);
+    // console.log(employeeAnswers);
     await db.addEmployee(employeeAnswers);
 };
 
@@ -102,7 +102,7 @@ const updateEmployeeRole = async () => {
     });
     const answers = await inquirer.prompt(updateQuestions);
     await db.updateEmployeeRole(answers);
-    console.log(answers);
+    // console.log(answers);
 };
 
 

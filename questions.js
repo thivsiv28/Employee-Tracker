@@ -62,12 +62,12 @@ const addEmployeeQuestions = [
     {
         type: 'input',
         name: 'firstname',
-        message: 'What is the employee\'s first name',
+        message: 'What is the employee\'s first name?',
     },
     {
         type: 'input',
         name: 'lastname',
-        message: 'What is the employee\'s last name',
+        message: 'What is the employee\'s last name?',
     },
     {
         type: 'list',
