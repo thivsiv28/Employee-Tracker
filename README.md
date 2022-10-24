@@ -60,7 +60,8 @@ The following video shows an example of the application being used from the comm
 ## Links:
 
 Deployed application walkthrough video: 
-https://drive.google.com/file/d/1Luv4Z9rQekBWU5_cgaIgBrlV-7KfgxiC/view
+https://drive.google.com/file/d/1qydPBZuFRqE7FZGm17vunvo2wzImdDeP/view
+
 
 GitHub repository URL: 
 https://github.com/thivsiv28/Module-12-Employee-Tracker
